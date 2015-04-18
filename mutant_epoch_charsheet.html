@@ -1,15 +1,15 @@
 <div class="sheet-container">
 
-<input type="radio" class="sheet-tab sheet-tab-character" id="sheet-tab-character" checked="true" value="0" name="attr_tab" /> <label for="sheet-tab-character">Character</label>
-<input type="radio" class="sheet-tab sheet-tab-stats" id="sheet-tab-stats" value="1" name="attr_tab" /> <label for="sheet-tab-stats">Stats</label>
-<input type="radio" class="sheet-tab sheet-tab-defense" id="sheet-tab-defense" value="2" name="attr_tab" /> <label for="sheet-tab-defense">Defense</label>
-<input type="radio" class="sheet-tab sheet-tab-attack" id="sheet-tab-attack" value="3" name="attr_tab" /> <label for="sheet-tab-attack">Attack</label>
-<input type="radio" class="sheet-tab sheet-tab-skills" id="sheet-tab-skills" value="4" name="attr_tab" /> <label for="sheet-tab-skills">Skills</label>
-<input type="radio" class="sheet-tab sheet-tab-items" id="sheet-tab-items" value="5" name="attr_tab" /> <label for="sheet-tab-items">Items</label>
-<input type="radio" class="sheet-tab sheet-tab-bio" id="sheet-tab-bio" value="6" name="attr_tab" /> <label for="sheet-tab-bio">Bio</label>
-<input type="radio" class="sheet-tab sheet-tab-other" id="sheet-tab-other" value="7" name="attr_tab" /> <label for="sheet-tab-other">Other</label>
-<input type="radio" class="sheet-tab sheet-tab-help" id="sheet-tab-help" value="8" name="attr_tab" /> <label for="sheet-tab-help">Help</label>
-<input type="radio" class="sheet-tab sheet-tab-all" id="sheet-tab-all" value="9" name="attr_tab" /> <label for="sheet-tab-all">Show All</label>
+<input type="radio" class="sheet-tab sheet-tab-all" checked="true" value="-1" name="attr_tab" title="Show All"/> 
+<input type="radio" class="sheet-tab sheet-tab-character" value="0" name="attr_tab" title="Character" />
+<input type="radio" class="sheet-tab sheet-tab-stats" value="1" name="attr_tab" title="Stats" />
+<input type="radio" class="sheet-tab sheet-tab-defense" value="2" name="attr_tab" title="Defense" />
+<input type="radio" class="sheet-tab sheet-tab-attack" value="3" name="attr_tab" title="Attack" />
+<input type="radio" class="sheet-tab sheet-tab-skills" value="4" name="attr_tab" title="Skills" />
+<input type="radio" class="sheet-tab sheet-tab-items" value="5" name="attr_tab" title="Items" />
+<input type="radio" class="sheet-tab sheet-tab-bio" value="6" name="attr_tab" title="Bio" />
+<input type="radio" class="sheet-tab sheet-tab-other" value="7" name="attr_tab" title="Other" />
+<input type="radio" class="sheet-tab sheet-tab-help" value="8" name="attr_tab" title="Help" /> 
 <div style="height: 20px"></div> <!-- fix height issue for above elements-->
 
 <div class="sheet-tab-character sheet-section">
@@ -45,7 +45,7 @@
 
     <div class="sheet-row">
       <div class="sheet-four sheet-columns">
-        <label> Endurance <button class="sheet-skill-roll" type="roll" name="roll_Endurance_Check" value="/me rolls [[d100cf>96cs<5]] against Endurance [[@{endurance}]] (current) | [[@{endurance_max}}]] (max)"></button> </label>
+        <label> Endurance <button class="sheet-skill-roll" type="roll" name="roll_Endurance_Check" value="/me rolls [[d100cf>96cs<5]] against Endurance [[@{endurance}]]:current | [[@{endurance_max}]]:max"></button> </label>
         <input class="sheet-u-full-width" type="number" step="1" value="25" name="attr_endurance">
       </div>
       <div class="sheet-one sheet-columns sheet-text-center"> <div style="font-size: 35px; margin-top: 33px;">/</div> </div>
@@ -244,36 +244,82 @@
 
 
 <div class="sheet-tab-attack sheet-section">
-    <h1>Attack Mode</h1>
-    <label>Add bonus SV: <input type="text" value="0" name="attr_attack_bonus_sv"/></label>
-    <label>Add bonus DMG: <input type="text" value="0" name="attr_attack_bonus_dmg"/></label>
-    <fieldset class="repeating_attacks">
-        <ul>
-            Two-handed <input type="checkbox" class="sheet-attack-swap" checked="false" value="1" name="attr_active_two"/>
-            <li class="sheet-attack-swap">Add strength bonus<input type="checkbox" checked="true" value="1" name="attr_add_strength"/></li>
+  <h1>Attack Mode</h1>
+  <div class="sheet-row">
+    <div class="sheet-six sheet-columns">
+      <label> Bonus SV </label>
+      <input type="number" value="0" class="sheet-u-full-width" name="attr_attack_bonus_sv" />
+    </div>
+    <div class="sheet-six sheet-columns">
+      <label> Bonus Dmg </label>
+      <input type="text" value="0" class="sheet-u-full-width" name="attr_attack_bonus_dmg" />
+    </div>
+    <hr/>
+  </div>
 
-            <li class="sheet-attack-roll sheet-two-handed"><button type="roll" value="/roll d100 against [[@{strike_value} + @{sv_two} + @{sv_mod} + @{attack_bonus_sv} + @{skill_sv}]]" name="roll_Attack_Hit">Hit</button></li>
-            <li class="sheet-attack-roll sheet-two-handed"><button type="roll" value="/roll @{damage_two}[base] + @{attack_bonus_dmg}[bonus] + @{skill_damage}[skill] + @{dmg_mod} * @{add_strength}[strength]" name="roll_Attack_Damage">Damage</button></li>
+  <fieldset class="repeating_attacks">
+    <div class="sheet-row">
 
-            <li class="sheet-attack-roll sheet-one-handed"><button type="roll" value="/roll d100 against [[@{strike_value} + @{sv} + @{sv_mod} + @{attack_bonus_sv} + @{skill_sv}]]" name="roll_Attack_Hit">Hit</button></li>
-            <li class="sheet-attack-roll sheet-one-handed"><button type="roll" value="/roll @{damage}[base] + @{attack_bonus_dmg}[bonus] + @{skill_damage}[skill] + @{dmg_mod} * @{add_strength}[strength]" name="roll_Attack_Damage">Damage</button></li>
+      <div class="sheet-row">
+        <div class="sheet-seven sheet-columns">
+          <label> Name
+            <button type="roll" name="roll_attack" value="/me attacks with @{name} rolling [[1d100]] against sv [[@{strike_value} + @{sv_mod} + (@{one_sv} * ((@{two_handed} - 1) * -1 + @{two_handed})) + (@{two_sv} * ((@{two_handed} - 1) * -1 + @{two_handed})) + @{attack_bonus_sv}]]"></button>
+          </label>
+          <input type="text" class="sheet-u-full-width" value="" placeholder="Enter a name" name="attr_name" />
+        </div>
+        <div class="sheet-three sheet-columns">
+          <label> Two-Handed? </label> <label class="sheet-center-button sheet-u-full-width"><input type="checkbox" value="2" checked="false" name="attr_two_handed" /> </label></label>
+        </div>
+        <div class="sheet-two sheet-columns">
+          <label> Add Strength </label> <label class="sheet-center-button sheet-u-full-width"><input type="checkbox" value="1" checked="false" name+"attr_add_strength" /> </label></label>
+        </div>
+      </div>
 
-            <li><label>Name <input type="text" placeholder="Enter a name" name="attr_attackname"/></label></li>
-            <li><label>One-handed SV <input type="text" value="0" step="1" name="attr_sv"/></label></li>
-            <li><label>Two-handed SV <input type="text" value="0" step="1" name="attr_sv_two"/><label></li>
-            <li><label>Rate <input type="text" name="attr_rate"/></label></li>
-            <li><label>Range <input type="number" step="1" name="attr_range"/></label> <label>With Strength: <input type="number" diabled="true" value="@{range} * @{range_mod}"/></label></li>
-            <li><label>One-handed Damage <input type="text" value="d20" name="attr_damage"/></label></li>
-            <li><label>Two-handed Damage <input type="text" value="d20" name="attr_damage_two"/></label></li>
-            <li><label>Ammo / uses <input type="number" step="1" name="attr_uses"/></label></li>
-            <li><label>Skill / Mastery <input type="number" value="0" step="1" name="attr_skillpts"/></label></li>
-            <li><label>Skill SV <input type="number" value="0" step="1" name="attr_skill_sv"/></label></li>
-            <li><label>Skill Damage <input type="number" value="0" step="1" name="attr_skill_damage"/></label></li>
-            <li><label>Comment <input type="textarea" name="attr_comment"/></label></li>
-        </ul>
-        <hr/>
-    </fieldset>
-    <hr>
+      <div class="sheet-row">
+        <div class="sheet-three sheet-columns">
+          <label> One-handed SV </label> <input type="number" class="sheet-u-full-width" value="0" name="attr_one_sv" />
+        </div>
+        <div class="sheet-three sheet-columns">
+          <label> Two-handed SV </label> <input type="number" class="sheet-u-full-width" value="0" name="attr_two_sv" />
+        </div>
+        <div class="sheet-three sheet-columns">
+          <label> One-handed Dmg </label> <input type="text" class="sheet-u-full-width" value="0" name="attr_one_dmg" />
+        </div>
+        <div class="sheet-three sheet-columns">
+          <label> Two-handed Dmg </label> <input type="text" class="sheet-u-full-width" value="0" name="attr_two_dmg" />
+        </div>
+      </div>
+
+      <div class="sheet-row">
+        <div class="sheet-two sheet-columns">
+          <label> Rate </label> <input type="number" class="sheet-u-full-width" value="1" name="attr_rate" />
+        </div>
+        <div class="sheet-two sheet-columns">
+          <label> Ammo </label> <input type="text" class="sheet-u-full-width" value="0" name="attr_ammo" />
+        </div>
+        <div class="sheet-two sheet-columns">
+          <label> Range </label> <input type="number" class="sheet-u-full-width" value="0" step=".1" name="attr_range" />
+        </div>
+        <div class="sheet-two sheet-columns">
+          <label> with str </label> <input type="number" disabled="true" class="sheet-u-full-width" value="@{range} + (@{range} * @{range_mod})" name="attr_range_final" />
+        </div>
+        <div class="sheet-two sheet-columns">
+          <label> Skill SV </label> <input type="number" class="sheet-u-full-width" value="0" name="attr_skill_sv" />
+        </div>
+        <div class="sheet-two sheet-columns">
+          <label> Skill Dmg </label> <input type="text" class="sheet-u-full-width" value="0" name="attr_skill_dmg" />
+        </div>
+      </div>
+
+      <div class="sheet-row">
+        <label> Custom Macro <button class="sheet-skill-roll" type="roll" name="roll_attack" value="@{macro}"></button> </label>
+        <textarea class="sheet-u-full-width" value="" name="attr_macro"> </textarea>
+      </div>
+    </div>
+    <hr/>
+    <div class="sheet-filler-25">
+    </div>
+  </fieldset>
 </div>
 
 

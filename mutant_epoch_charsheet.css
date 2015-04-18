@@ -1,43 +1,81 @@
 .sheet-section { display: none }
 .sheet-tab-all:checked ~ .sheet-section { display: block }
 
-.sheet-tab-character:checked ~ .sheet-tab-character { display: block }
-.sheet-tab-stats:checked ~ .sheet-tab-stats { display: block }
-.sheet-tab-defense:checked ~ .sheet-tab-defense { display: block }
-.sheet-tab-attack:checked ~ .sheet-tab-attack { display: block }
-.sheet-tab-skills:checked ~ .sheet-tab-skills { display: block }
-.sheet-tab-items:checked ~ .sheet-tab-items { display: block }
-.sheet-tab-bio:checked ~ .sheet-tab-bio { display: block }
-.sheet-tab-other:checked ~ .sheet-tab-other { display: block }
-.sheet-tab-help:checked ~ .sheet-tab-help { display: block }
+.sheet-tab-character:checked ~ .sheet-tab-character,
+.sheet-tab-stats:checked ~ .sheet-tab-stats,
+.sheet-tab-defense:checked ~ .sheet-tab-defense,
+.sheet-tab-attack:checked ~ .sheet-tab-attack,
+.sheet-tab-skills:checked ~ .sheet-tab-skills,
+.sheet-tab-items:checked ~ .sheet-tab-items,
+.sheet-tab-bio:checked ~ .sheet-tab-bio,
+.sheet-tab-other:checked ~ .sheet-tab-other,
+.sheet-tab-help:checked ~ .sheet-tab-help {
+  display: block
+}
 
-.sheet-attack-swap:not(:checked) ~ .sheet-attack-roll.sheet-two-handed {display: none }
-.sheet-attack-swap:checked ~ .sheet-attack-roll.sheet-two-handed {display: block }
-.sheet-attack-swap:not(:checked) ~ .sheet-attack-roll.sheet-one-handed {display: block }
-.sheet-attack-swap:checked ~ .sheet-attack-roll.sheet-one-handed {display: none }
+.sheet-tab {
+  text-indent: 9999px;
+  position: relative;
+  left: -9999px;
+  width: 40px;
+  height: 20px;
+  cursor: pointer;
+  margin: 0 35px 20px 0;
+}
 
-.sheet-tab { display: none !important; }
-.sheet-tab + label {
+.sheet-tab:before {
+  text-indent: 0;
+  content: attr(title);
   text-align: center;
   padding: 5px;
   margin: 0 5px;
-  width: auto;
   background-color: lightblue;
-  display: inline;
+  display: inline-block;
   border: 1px solid black;
   border-radius: 5px;
   box-shadow: 0 1px 1px black;
+  cursor: pointer;
+  width: 60px;
+  height: 15px;
+  z-index: 1;
+  position: relative;
 }
-.sheet-tab:checked + label { background-color: lightyellow; }
+.sheet-tab:not(:checked):hover:before {
+  opacity: .8;
+  box-shadow: none;
+}
+
+.sheet-tab:checked:before {
+  background-color: lightyellow;
+}
 
 .sheet-text-center {
   text-align: center;
+}
+
+.sheet-center-button {
+  height: 38px;
+  max-height: 38px;
+}
+.sheet-center-button input {
+  margin-top: 10px;
 }
 
 input[disabled=true] {
   background-color: rgb(255, 253, 211) !important;
 }
 
+label {
+  max-height: 18px;
+}
+
+.sheet-filler-25 {
+  height: 25px;
+}
+
+td input {
+  margin-bottom: 0 !important;
+}
 
 /******************************************
  * The following is a customized version of the skeleton css framework,
