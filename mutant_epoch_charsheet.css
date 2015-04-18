@@ -1,0 +1,440 @@
+.sheet-section { display: none }
+.sheet-tab-all:checked ~ .sheet-section { display: block }
+
+.sheet-tab-character:checked ~ .sheet-tab-character { display: block }
+.sheet-tab-stats:checked ~ .sheet-tab-stats { display: block }
+.sheet-tab-defense:checked ~ .sheet-tab-defense { display: block }
+.sheet-tab-attack:checked ~ .sheet-tab-attack { display: block }
+.sheet-tab-skills:checked ~ .sheet-tab-skills { display: block }
+.sheet-tab-items:checked ~ .sheet-tab-items { display: block }
+.sheet-tab-bio:checked ~ .sheet-tab-bio { display: block }
+.sheet-tab-other:checked ~ .sheet-tab-other { display: block }
+.sheet-tab-help:checked ~ .sheet-tab-help { display: block }
+
+.sheet-attack-swap:not(:checked) ~ .sheet-attack-roll.sheet-two-handed {display: none }
+.sheet-attack-swap:checked ~ .sheet-attack-roll.sheet-two-handed {display: block }
+.sheet-attack-swap:not(:checked) ~ .sheet-attack-roll.sheet-one-handed {display: block }
+.sheet-attack-swap:checked ~ .sheet-attack-roll.sheet-one-handed {display: none }
+
+.sheet-tab { display: none !important; }
+.sheet-tab + label {
+  text-align: center;
+  padding: 5px;
+  margin: 0 5px;
+  width: auto;
+  background-color: lightblue;
+  display: inline;
+  border: 1px solid black;
+  border-radius: 5px;
+  box-shadow: 0 1px 1px black;
+}
+.sheet-tab:checked + label { background-color: lightyellow; }
+
+.sheet-text-center {
+  text-align: center;
+}
+
+input[disabled=true] {
+  background-color: rgb(255, 253, 211) !important;
+}
+
+
+/******************************************
+ * The following is a customized version of the skeleton css framework,
+ * where each class is prefixed with .sheet- per roll20 requirements
+ * Do not modify
+ * Note that buttons had to be heavily modified / removed for rolling
+ * **************************************/
+
+/*
+* Skeleton V2.0.4
+* Copyright 2014, Dave Gamache
+* www.sheet-getskeleton.sheet-com
+* Free to use under the MIT license.
+* http://www.sheet-opensource.sheet-org/licenses/mit-license.sheet-php
+* 12/29/2014
+*/
+
+
+/* Table of contents
+- Grid
+- Base Styles
+- Typography
+- Links
+- Buttons //heavily modified
+- Forms
+- Lists
+- Code
+- Tables
+- Spacing
+- Utilities
+- Clearing
+- Media Queries
+*/
+
+
+/* Grid
+*/
+.sheet-container {
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box; }
+.sheet-column,
+.sheet-columns {
+  width: 100%;
+  float: left;
+  box-sizing: border-box; }
+
+/* For devices larger than 400px */
+@media (min-width: 400px) {
+  .sheet-container {
+    width: 85%;
+    padding: 0; }
+}
+
+/* For devices larger than 550px */
+@media (min-width: 550px) {
+  .sheet-container {
+    width: 80%; }
+  .sheet-column,
+  .sheet-columns {
+    margin-left: 4%; }
+  .sheet-column:first-child,
+  .sheet-columns:first-child {
+    margin-left: 0; }
+
+  .sheet-one.sheet-column,
+  .sheet-one.sheet-columns                    { width: 4.66666666667% !important; }
+  .sheet-two.sheet-columns                    { width: 13.3333333333% !important; }
+  .sheet-three.sheet-columns                  { width: 22% !important;            }
+  .sheet-four.sheet-columns                   { width: 30.6666666667% !important; }
+  .sheet-five.sheet-columns                   { width: 39.3333333333% !important; }
+  .sheet-six.sheet-columns                    { width: 48% !important;            }
+  .sheet-seven.sheet-columns                  { width: 56.6666666667% !important; }
+  .sheet-eight.sheet-columns                  { width: 65.3333333333% !important; }
+  .sheet-nine.sheet-columns                   { width: 74.0% !important;          }
+  .sheet-ten.sheet-columns                    { width: 82.6666666667% !important; }
+  .sheet-eleven.sheet-columns                 { width: 91.3333333333% !important; }
+  .sheet-twelve.sheet-columns                 { width: 100% !important; margin-left: 0; }
+
+  .sheet-one-third.sheet-column               { width: 30.6666666667% !important; }
+  .sheet-two-thirds.sheet-column              { width: 65.3333333333% !important; }
+
+  .sheet-one-half.sheet-column                { width: 48% !important; }
+
+  /* Offsets */
+  .sheet-offset-by-one.sheet-column,
+  .sheet-offset-by-one.sheet-columns          { margin-left: 8.66666666667%; }
+  .sheet-offset-by-two.sheet-column,
+  .sheet-offset-by-two.sheet-columns          { margin-left: 17.3333333333%; }
+  .sheet-offset-by-three.sheet-column,
+  .sheet-offset-by-three.sheet-columns        { margin-left: 26%;            }
+  .sheet-offset-by-four.sheet-column,
+  .sheet-offset-by-four.sheet-columns         { margin-left: 34.6666666667%; }
+  .sheet-offset-by-five.sheet-column,
+  .sheet-offset-by-five.sheet-columns         { margin-left: 43.3333333333%; }
+  .sheet-offset-by-six.sheet-column,
+  .sheet-offset-by-six.sheet-columns          { margin-left: 52%;            }
+  .sheet-offset-by-seven.sheet-column,
+  .sheet-offset-by-seven.sheet-columns        { margin-left: 60.6666666667%; }
+  .sheet-offset-by-eight.sheet-column,
+  .sheet-offset-by-eight.sheet-columns        { margin-left: 69.3333333333%; }
+  .sheet-offset-by-nine.sheet-column,
+  .sheet-offset-by-nine.sheet-columns         { margin-left: 78.0%;          }
+  .sheet-offset-by-ten.sheet-column,
+  .sheet-offset-by-ten.sheet-columns          { margin-left: 86.6666666667%; }
+  .sheet-offset-by-eleven.sheet-column,
+  .sheet-offset-by-eleven.sheet-columns       { margin-left: 95.3333333333%; }
+
+  .sheet-offset-by-one-third.sheet-column,
+  .sheet-offset-by-one-third.sheet-columns    { margin-left: 34.6666666667%; }
+  .sheet-offset-by-two-thirds.sheet-column,
+  .sheet-offset-by-two-thirds.sheet-columns   { margin-left: 69.3333333333%; }
+
+  .sheet-offset-by-one-half.sheet-column,
+  .sheet-offset-by-one-half.sheet-columns     { margin-left: 52%; }
+
+}
+
+
+/* Base Styles */
+/* NOTE
+html is set to 62.5% so that all the REM measurements throughout Skeleton
+are based on 10px sizing. So basically 1.5rem = 15px :) */
+html {
+  font-size: 62.5%; }
+body {
+  font-size: 1.5em; /* currently ems cause chrome bug misinterpreting rems on body element */
+  line-height: 1.6;
+  font-weight: 400;
+  font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #222; }
+
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: 2rem;
+  font-weight: 300; }
+h1 { font-size: 4.0rem; line-height: 1.2;  letter-spacing: -.1rem;}
+h2 { font-size: 3.6rem; line-height: 1.25; letter-spacing: -.1rem; }
+h3 { font-size: 3.0rem; line-height: 1.3;  letter-spacing: -.1rem; }
+h4 { font-size: 2.4rem; line-height: 1.35; letter-spacing: -.08rem; }
+h5 { font-size: 1.8rem; line-height: 1.5;  letter-spacing: -.05rem; }
+h6 { font-size: 1.5rem; line-height: 1.6;  letter-spacing: 0; }
+
+/* Larger than phablet */
+@media (min-width: 550px) {
+  h1 { font-size: 5.0rem; }
+  h2 { font-size: 4.2rem; }
+  h3 { font-size: 3.6rem; }
+  h4 { font-size: 3.0rem; }
+  h5 { font-size: 2.4rem; }
+  h6 { font-size: 1.5rem; }
+}
+
+p {
+  margin-top: 0; }
+
+
+/* Links */
+a {
+  color: #1EAEDB; }
+a:hover {
+  color: #0FA0CE; }
+
+
+/* Buttons */
+label button[type=roll] {
+  float: left;
+  position: initial;
+}
+button[type=roll] {
+  height: 20px;
+  width: 25px;
+  position: absolute;
+  }
+.sheet-button:hover,
+button:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+input[type="button"]:hover,
+.sheet-button:focus,
+button:focus,
+input[type="submit"]:focus,
+input[type="reset"]:focus,
+input[type="button"]:focus {
+  color: #333;
+  border-color: #888;
+  outline: 0; }
+.sheet-button.sheet-button-primary,
+button.sheet-button-primary,
+input[type="submit"].sheet-button-primary,
+input[type="reset"].sheet-button-primary,
+input[type="button"].sheet-button-primary {
+  color: #FFF;
+  background-color: #33C3F0;
+  border-color: #33C3F0; }
+.sheet-button.sheet-button-primary:hover,
+button.sheet-button-primary:hover,
+input[type="submit"].sheet-button-primary:hover,
+input[type="reset"].sheet-button-primary:hover,
+input[type="button"].sheet-button-primary:hover,
+.sheet-button.sheet-button-primary:focus,
+button.sheet-button-primary:focus,
+input[type="submit"].sheet-button-primary:focus,
+input[type="reset"].sheet-button-primary:focus,
+input[type="button"].sheet-button-primary:focus {
+  color: #FFF;
+  background-color: #1EAEDB;
+  border-color: #1EAEDB; }
+
+
+/* Forms */
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="text"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
+textarea,
+select {
+  height: 38px;
+  padding: 6px 10px; /* The 6px vertically centers text on FF, ignored by Webkit */
+  background-color: #fff;
+  border: 1px solid #D1D1D1;
+  border-radius: 4px;
+  box-shadow: none;
+  box-sizing: border-box; }
+/* Removes awkward default styles on some inputs for iOS */
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="text"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
+textarea {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none; }
+textarea {
+  min-height: 65px;
+  padding-top: 6px;
+  padding-bottom: 6px; }
+input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="search"]:focus,
+input[type="text"]:focus,
+input[type="tel"]:focus,
+input[type="url"]:focus,
+input[type="password"]:focus,
+textarea:focus,
+select:focus {
+  border: 1px solid #33C3F0;
+  outline: 0; }
+label,
+legend {
+  display: block;
+  margin-bottom: .5rem;
+  font-weight: 600; }
+fieldset {
+  padding: 0;
+  border-width: 0; }
+input[type="checkbox"],
+input[type="radio"] {
+  display: inline; }
+label > .sheet-label-body {
+  display: inline-block;
+  margin-left: .5rem;
+  font-weight: normal; }
+
+
+/* Lists */
+ul {
+  list-style: circle inside; }
+ol {
+  list-style: decimal inside; }
+ol, ul {
+  padding-left: 0;
+  margin-top: 0; }
+ul ul,
+ul ol,
+ol ol,
+ol ul {
+  margin: 1.5rem 0 1.5rem 3rem;
+  font-size: 90%; }
+li {
+  margin-bottom: 1rem; }
+
+
+/* Code */
+code {
+  padding: .2rem .5rem;
+  margin: 0 .2rem;
+  font-size: 90%;
+  white-space: nowrap;
+  background: #F1F1F1;
+  border: 1px solid #E1E1E1;
+  border-radius: 4px; }
+pre > code {
+  display: block;
+  padding: 1rem 1.5rem;
+  white-space: pre; }
+
+
+/* Tables */
+th,
+td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #E1E1E1; }
+th:first-child,
+td:first-child {
+  padding-left: 0; }
+th:last-child,
+td:last-child {
+  padding-right: 0; }
+
+
+/* Spacing */
+button,
+.sheet-button {
+  margin-bottom: 1rem; }
+input,
+textarea,
+select,
+fieldset {
+  margin-bottom: 1.5rem; }
+pre,
+blockquote,
+dl,
+figure,
+table,
+p,
+ul,
+ol,
+form {
+  margin-bottom: 2.5rem; }
+
+
+/* Utilities */
+.sheet-u-full-width {
+  width: 100% !important;
+  box-sizing: border-box; }
+.sheet-u-max-full-width {
+  max-width: 100% !important;
+  box-sizing: border-box; }
+.sheet-u-pull-right {
+  float: right; }
+.sheet-u-pull-left {
+  float: left; }
+
+
+/* Misc */
+hr {
+  margin-top: 3rem;
+  margin-bottom: 3.5rem;
+  border-width: 0;
+  border-top: 1px solid #E1E1E1; }
+
+
+/* Clearing */
+
+/* Self Clearing Goodness */
+.sheet-container:after,
+.sheet-row:after,
+.sheet-u-cf {
+  content: "";
+  display: table;
+  clear: both; }
+
+
+/* Media Queries */
+/*
+Note: The best way to structure the use of media queries is to create the queries
+near the relevant code. For example, if you wanted to change the styles for buttons
+on small devices, paste the mobile query code up in the buttons section and style it
+there.
+*/
+
+
+/* Larger than mobile */
+@media (min-width: 400px) {}
+
+/* Larger than phablet (also point when grid becomes active) */
+@media (min-width: 550px) {}
+
+/* Larger than tablet */
+@media (min-width: 750px) {}
+
+/* Larger than desktop */
+@media (min-width: 1000px) {}
+
+/* Larger than Desktop HD */
+@media (min-width: 1200px) {}
+
