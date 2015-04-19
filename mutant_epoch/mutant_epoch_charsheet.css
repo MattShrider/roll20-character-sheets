@@ -78,6 +78,20 @@ td input {
   margin-bottom: 0 !important;
 }
 
+.sheet-collapse {
+  position: absolute;
+  left: -20px;
+  margin-top: -42px;
+}
+
+.sheet-collapse ~ .sheet-collapsable {
+  display: none !important;
+}
+.sheet-collapse:checked ~ .sheet-collapsable {
+  display: block !important;
+}
+
+
 .sheet-rolltemplate-attack table {
   border: 1px solid black;
   border-left: none;

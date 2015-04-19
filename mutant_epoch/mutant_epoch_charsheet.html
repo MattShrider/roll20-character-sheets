@@ -334,7 +334,8 @@
         </div>
       </div>
 
-      <div class="sheet-row">
+      <input type="checkbox" title="show details" name="attr_collapse" checked="true" value="1" class="sheet-collapse" />
+      <div class="sheet-row sheet-collapsable">
         <div class="sheet-three sheet-columns">
           <label> One-handed SV </label> <input type="number" class="sheet-u-full-width" value="0" name="attr_one_sv" />
         </div>
@@ -349,7 +350,7 @@
         </div>
       </div>
 
-      <div class="sheet-row">
+      <div class="sheet-row sheet-collapsable">
         <div class="sheet-two sheet-columns">
           <label> Rate </label> <input type="number" class="sheet-u-full-width" value="1" name="attr_rate" />
         </div>
@@ -370,12 +371,12 @@
         </div>
       </div>
 
-      <div class="sheet-row">
+      <div class="sheet-row sheet-collapsable">
         <label> Custom Macro <button class="sheet-skill-roll" type="roll" name="roll_attack" value="@{macro}"></button> </label>
         <textarea class="sheet-u-full-width" value="" name="attr_macro"> </textarea>
       </div>
+      <hr style="margin: 5px 0 10px 0;" />
     </div>
-    <hr/>
     <div class="sheet-filler-25">
     </div>
   </fieldset>
