@@ -1,3 +1,62 @@
+<rolltemplate class="sheet-rolltemplate-attack">
+  <table>
+    {{#name}}
+      <tr><th>{{name}}</th></tr>
+    {{/name}}
+    <tr><td>Roll: {{attack}}</td></tr>
+
+    <!-- begin annoying auto hit check -->
+    {{#rollTotal() attack 1}}
+      <tr><td><span class="sheet-crit">CRIT!</span> {{crit}}</td></tr>
+    {{/rollTotal() attack 1}}
+    {{#rollTotal() attack 2}}
+      <tr><td><span class="sheet-crit">Automatic Hit!</span></td></tr>
+    {{/rollTotal() attack 2}}
+    {{#rollTotal() attack 3}}
+      <tr><td><span class="sheet-crit">Automatic Hit!</span></td></tr>
+    {{/rollTotal() attack 3}}
+    {{#rollTotal() attack 4}}
+      <tr><td><span class="sheet-crit">Automatic Hit!</span></td></tr>
+    {{/rollTotal() attack 4}}
+    {{#rollTotal() attack 5}}
+      <tr><td><span class="sheet-crit">Automatic Hit!</span></td></tr>
+    {{/rollTotal() attack 5}}
+
+    <!-- begin annoying auto miss check -->
+    {{#rollTotal() attack 100}}
+      <tr><td><span class="sheet-fumble">FUMBLE!</span> {{crit}}</td></tr>
+    {{/rollTotal() attack 100}}
+    {{#rollTotal() attack 99}}
+      <tr><td><span class="sheet-fumble">Automatic Miss!</span></td></tr>
+    {{/rollTotal() attack 99}}
+    {{#rollTotal() attack 98}}
+      <tr><td><span class="sheet-fumble">Automatic Miss!</span></td></tr>
+    {{/rollTotal() attack 98}}
+    {{#rollTotal() attack 97}}
+      <tr><td><span class="sheet-fumble">Automatic Miss!</span></td></tr>
+    {{/rollTotal() attack 97}}
+    {{#rollTotal() attack 96}}
+      <tr><td><span class="sheet-fumble">Automatic Miss!</span></td></tr>
+    {{/rollTotal() attack 96}}
+
+
+    {{#rollTotal() twohand 0}}
+      <tr><td>SV 1Hand {{svone}}</td></tr>
+    {{/rollTotal() twohand 0}}
+    {{#rollTotal() twohand 1}}
+      <tr><td>SV 2Hand {{svtwo}}</td></tr>
+    {{/rollTotal() twohand 1}}
+
+    {{#rollTotal() twohand 0}}
+      <tr><td>DMG 1Hand {{dmgone}}</td></tr>
+    {{/rollTotal() twohand 0}}
+    {{#rollTotal() twohand 1}}
+      <tr><td>DMG 2Hand {{dmgtwo}}</td></tr>
+    {{/rollTotal() twohand 1}}
+  </table>
+</rolltemplate>
+
+
 <div class="sheet-container">
 
 <input type="radio" class="sheet-tab sheet-tab-all" checked="true" value="-1" name="attr_tab" title="Show All"/> 
@@ -263,15 +322,15 @@
       <div class="sheet-row">
         <div class="sheet-seven sheet-columns">
           <label> Name
-            <button type="roll" name="roll_attack" value="/me attacks with @{name} rolling [[1d100]] against sv [[@{strike_value} + @{sv_mod} + (@{one_sv} * ((@{two_handed} - 1) * -1 + @{two_handed})) + (@{two_sv} * ((@{two_handed} - 1) * -1 + @{two_handed})) + @{attack_bonus_sv}]]"></button>
+            <button type="roll" name="roll_attack" value="&{template:attack} {{name=@{name}}} {{attack=[[d100cs<5cf>96]]}} {{crit=[[d10cs=111cf=111]]}} {{twohand=[[@{two_handed}]]}} {{svone=[[@{strike_value} + @{sv_mod} + @{one_sv} + @{attack_bonus_sv} + @{skill_sv}]]}} {{svtwo=[[@{strike_value} + @{sv_mod} + @{two_sv} + @{attack_bonus_sv} + @{skill_sv}]]}} {{dmgone=[[@{one_dmg} + @{skill_dmg} + @{attack_bonus_dmg} + (@{dmg_mod} * @{add_strength})]]}} {{dmgtwo=[[@{two_dmg} + @{skill_dmg} + @{attack_bonus_dmg} + (@{dmg_mod} * @{add_strength})]]}}"></button>
           </label>
           <input type="text" class="sheet-u-full-width" value="" placeholder="Enter a name" name="attr_name" />
         </div>
         <div class="sheet-three sheet-columns">
-          <label> Two-Handed? </label> <label class="sheet-center-button sheet-u-full-width"><input type="checkbox" value="2" checked="false" name="attr_two_handed" /> </label></label>
+          <label> Two-Handed? </label> <label class="sheet-center-button sheet-u-full-width"><input type="checkbox" value="1" checked="false" name="attr_two_handed" /> </label></label>
         </div>
         <div class="sheet-two sheet-columns">
-          <label> Add Strength </label> <label class="sheet-center-button sheet-u-full-width"><input type="checkbox" value="1" checked="false" name+"attr_add_strength" /> </label></label>
+          <label> Add Strength </label> <label class="sheet-center-button sheet-u-full-width"><input type="checkbox" value="1" checked="false" name="attr_add_strength" /> </label></label>
         </div>
       </div>
 

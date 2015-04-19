@@ -47,6 +47,7 @@
 
 .sheet-tab:checked:before {
   background-color: lightyellow;
+  box-shadow: none;
 }
 
 .sheet-text-center {
@@ -75,6 +76,44 @@ label {
 
 td input {
   margin-bottom: 0 !important;
+}
+
+.sheet-rolltemplate-attack table {
+  border: 1px solid black;
+  border-left: none;
+  border-right: none;
+  width: 100%;
+  background-color: white;
+}
+
+.sheet-rolltemplate-attack th {
+  font-size: 16px;
+  left: 0;
+  position: relative;
+  text-align: left;
+  background-color: rgb(250, 160, 100);
+  border-bottom: 1px solid black;
+}
+
+.sheet-rolltemplate-attack td {
+  padding: 2px 2px 2px 10px;
+}
+
+.sheet-rolltemplate-attack .sheet-crit {
+  font-weight: bold;
+  color: green;
+  font-size: 18px;
+}
+
+.sheet-rolltemplate-attack .sheet-fumble {
+  font-weight: bold;
+  color: red;
+  font-size: 18px;
+}
+
+.sheet-rolltemplate-attack .inlinerollresult {
+  border: none;
+  background-color: initial;
 }
 
 /******************************************
